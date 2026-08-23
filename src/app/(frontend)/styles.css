@@ -1,0 +1,400 @@
+:root {
+  --bg: #12100e;
+  --bg-2: #1a1714;
+  --card: #201c18;
+  --line: #2e2822;
+  --ink: #f2ede6;
+  --muted: #a49a8c;
+  --accent: #c9a227;
+  --accent-ink: #14110c;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-body), system-ui, sans-serif;
+  line-height: 1.6;
+}
+
+h1,
+h2,
+h3,
+.logo,
+.btn {
+  font-family: var(--font-display), 'Arial Narrow', sans-serif;
+  letter-spacing: 0.02em;
+}
+
+h1 {
+  font-size: clamp(2.4rem, 7vw, 4.5rem);
+  line-height: 1.05;
+  text-transform: uppercase;
+  margin: 0.4em 0;
+}
+
+h1 em {
+  color: var(--accent);
+  font-style: normal;
+}
+
+h2 {
+  font-size: clamp(1.6rem, 4vw, 2.4rem);
+  text-transform: uppercase;
+  margin: 0 0 1em;
+}
+
+.muted {
+  color: var(--muted);
+}
+
+/* ---------- шапка и футер ---------- */
+.site-header {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  padding: 1rem clamp(1rem, 5vw, 4rem);
+  border-bottom: 1px solid var(--line);
+  position: sticky;
+  top: 0;
+  background: color-mix(in srgb, var(--bg) 88%, transparent);
+  backdrop-filter: blur(8px);
+  z-index: 10;
+}
+
+.logo {
+  font-size: 1.5rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--ink);
+  text-decoration: none;
+}
+
+.logo-dot {
+  color: var(--accent);
+}
+
+.site-nav {
+  display: flex;
+  gap: 1.4rem;
+  margin-left: auto;
+}
+
+.site-nav a {
+  color: var(--muted);
+  text-decoration: none;
+  font-size: 0.95rem;
+}
+
+.site-nav a:hover {
+  color: var(--ink);
+}
+
+.site-footer {
+  display: flex;
+  justify-content: space-between;
+  gap: 2rem;
+  flex-wrap: wrap;
+  padding: 3rem clamp(1rem, 5vw, 4rem);
+  border-top: 1px solid var(--line);
+  background: var(--bg-2);
+}
+
+.footer-info {
+  text-align: right;
+  color: var(--muted);
+}
+
+.footer-info p {
+  margin: 0.2em 0;
+}
+
+/* ---------- кнопки ---------- */
+.btn {
+  display: inline-block;
+  padding: 0.65em 1.4em;
+  border-radius: 6px;
+  border: 1px solid transparent;
+  text-decoration: none;
+  text-transform: uppercase;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: transform 0.08s ease, background 0.15s ease;
+}
+
+.btn:active {
+  transform: translateY(1px);
+}
+
+.btn-accent {
+  background: var(--accent);
+  color: var(--accent-ink);
+  font-weight: 600;
+}
+
+.btn-accent:hover {
+  background: #dab338;
+}
+
+.btn-ghost {
+  border-color: var(--line);
+  color: var(--ink);
+}
+
+.btn-ghost:hover {
+  border-color: var(--accent);
+}
+
+.btn-lg {
+  padding: 0.9em 2em;
+  font-size: 1rem;
+}
+
+.btn[disabled] {
+  opacity: 0.6;
+  cursor: wait;
+}
+
+/* ---------- секции ---------- */
+.hero {
+  padding: clamp(3rem, 10vh, 7rem) clamp(1rem, 5vw, 4rem);
+  border-bottom: 1px solid var(--line);
+  background:
+    radial-gradient(ellipse 60% 50% at 80% 10%, rgba(201, 162, 39, 0.08), transparent),
+    var(--bg);
+}
+
+.eyebrow {
+  color: var(--accent);
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  font-size: 0.8rem;
+  margin: 0;
+}
+
+.hero-sub {
+  max-width: 46ch;
+  color: var(--muted);
+  font-size: 1.1rem;
+}
+
+.hero-actions {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-top: 2rem;
+}
+
+.section {
+  padding: clamp(2.5rem, 8vh, 5rem) clamp(1rem, 5vw, 4rem);
+}
+
+.section.cta {
+  text-align: center;
+  border-top: 1px solid var(--line);
+  background: var(--bg-2);
+}
+
+/* ---------- карточки ---------- */
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 1rem;
+}
+
+.card {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 1.2rem 1.4rem;
+}
+
+.card h3 {
+  margin: 0;
+  font-size: 1.15rem;
+}
+
+.card-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 1rem;
+}
+
+.price {
+  color: var(--accent);
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.duration {
+  color: var(--muted);
+  font-size: 0.85rem;
+  margin-bottom: 0;
+}
+
+.barber-card {
+  text-align: center;
+}
+
+.barber-avatar {
+  width: 72px;
+  height: 72px;
+  margin: 0 auto 0.8rem;
+  border-radius: 50%;
+  background: var(--bg-2);
+  border: 2px solid var(--accent);
+  color: var(--accent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-display), sans-serif;
+  font-size: 1.6rem;
+}
+
+.barber-title {
+  color: var(--accent);
+  text-transform: uppercase;
+  font-size: 0.78rem;
+  letter-spacing: 0.12em;
+  margin: 0.2em 0 0.6em;
+}
+
+/* ---------- запись ---------- */
+.booking-page {
+  max-width: 880px;
+  margin: 0 auto;
+}
+
+.booking-form fieldset {
+  border: none;
+  border-top: 1px solid var(--line);
+  margin: 0 0 1.5rem;
+  padding: 1.5rem 0 0;
+}
+
+.booking-form legend {
+  font-family: var(--font-display), sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding-right: 1rem;
+  color: var(--accent);
+}
+
+.choice-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 0.7rem;
+}
+
+.choice {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  text-align: left;
+  background: var(--card);
+  border: 1px solid var(--line);
+  color: var(--ink);
+  border-radius: 8px;
+  padding: 0.8rem 1rem;
+  cursor: pointer;
+  font: inherit;
+}
+
+.choice-meta {
+  color: var(--muted);
+  font-size: 0.85rem;
+}
+
+.day-strip {
+  display: flex;
+  gap: 0.5rem;
+  overflow-x: auto;
+  padding-bottom: 0.5rem;
+}
+
+.day {
+  flex: 0 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.15rem;
+  background: var(--card);
+  border: 1px solid var(--line);
+  color: var(--ink);
+  border-radius: 8px;
+  padding: 0.6rem 0.9rem;
+  cursor: pointer;
+  font: inherit;
+}
+
+.day-week {
+  color: var(--muted);
+  text-transform: uppercase;
+  font-size: 0.7rem;
+}
+
+.slot-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(84px, 1fr));
+  gap: 0.5rem;
+}
+
+.slot {
+  background: var(--card);
+  border: 1px solid var(--line);
+  color: var(--ink);
+  border-radius: 8px;
+  padding: 0.55rem 0;
+  cursor: pointer;
+  font: inherit;
+  font-variant-numeric: tabular-nums;
+}
+
+.choice:hover,
+.day:hover,
+.slot:hover {
+  border-color: var(--accent);
+}
+
+.choice.selected,
+.day.selected,
+.slot.selected {
+  border-color: var(--accent);
+  background: color-mix(in srgb, var(--accent) 16%, var(--card));
+}
+
+.contact-row {
+  display: flex;
+  gap: 0.8rem;
+  flex-wrap: wrap;
+  margin-bottom: 1rem;
+}
+
+.contact-row input {
+  flex: 1 1 220px;
+  background: var(--card);
+  border: 1px solid var(--line);
+  color: var(--ink);
+  border-radius: 8px;
+  padding: 0.7rem 1rem;
+  font: inherit;
+}
+
+.contact-row input:focus {
+  outline: none;
+  border-color: var(--accent);
+}
+
+.form-error {
+  color: #e07a5f;
+}
+
+.booking-done {
+  text-align: center;
+  padding: 3rem 1rem;
+}
