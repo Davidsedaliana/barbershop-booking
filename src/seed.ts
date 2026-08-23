@@ -14,7 +14,16 @@ const SERVICES = [
   { name: 'Детская стрижка (до 12 лет)', price: 1200, durationMin: 45, description: 'Терпеливо и весело' },
 ]
 
-const BARBERS = [
+type Weekday = '0' | '1' | '2' | '3' | '4' | '5' | '6'
+
+const BARBERS: {
+  name: string
+  title: string
+  bio: string
+  workDays: Weekday[]
+  workStart: string
+  workEnd: string
+}[] = [
   { name: 'Арам', title: 'Основатель', bio: '12 лет за креслом, четыре чемпионата барберов', workDays: ['2', '3', '4', '5', '6'], workStart: '10:00', workEnd: '20:00' },
   { name: 'Давид', title: 'Топ-барбер', bio: 'Фейды и классика. Стрижёт под винил', workDays: ['1', '2', '3', '4', '5'], workStart: '11:00', workEnd: '21:00' },
   { name: 'Тигран', title: 'Барбер', bio: 'Молодой и дотошный: контуры — бритвой', workDays: ['3', '4', '5', '6', '0'], workStart: '10:00', workEnd: '19:00' },

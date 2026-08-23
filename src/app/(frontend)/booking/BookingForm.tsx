@@ -45,8 +45,6 @@ export function BookingForm({ services, barbers }: { services: Service[]; barber
 
   const loadSlots = useCallback(async () => {
     if (!serviceId || !barberId || !date) return
-    setSlots(null)
-    setTime(null)
     const res = await fetch(
       `/api/appointments/slots?barber=${barberId}&service=${serviceId}&date=${date}`,
     )
@@ -55,8 +53,29 @@ export function BookingForm({ services, barbers }: { services: Service[]; barber
   }, [serviceId, barberId, date])
 
   useEffect(() => {
+    // загрузка данных с сервера: setState происходит после await, каскадного рендера нет
+    // eslint-disable-next-line
     void loadSlots()
   }, [loadSlots])
+
+  function pickService(id: Service['id']) {
+    setServiceId(id)
+    setSlots(null)
+    setTime(null)
+  }
+
+  function pickBarber(id: Barber['id']) {
+    setBarberId(id)
+    setDate(null)
+    setSlots(null)
+    setTime(null)
+  }
+
+  function pickDate(iso: string) {
+    setDate(iso)
+    setSlots(null)
+    setTime(null)
+  }
 
   async function submit(e: React.FormEvent) {
     e.preventDefault()
@@ -111,7 +130,7 @@ export function BookingForm({ services, barbers }: { services: Service[]; barber
               type="button"
               key={s.id}
               className={`choice ${serviceId === s.id ? 'selected' : ''}`}
-              onClick={() => setServiceId(s.id)}
+              onClick={() => pickService(s.id)}
             >
               <span>{s.name}</span>
               <span className="choice-meta">
@@ -131,7 +150,7 @@ export function BookingForm({ services, barbers }: { services: Service[]; barber
                 type="button"
                 key={b.id}
                 className={`choice ${barberId === b.id ? 'selected' : ''}`}
-                onClick={() => setBarberId(b.id)}
+                onClick={() => pickBarber(b.id)}
               >
                 <span>{b.name}</span>
                 {b.title && <span className="choice-meta">{b.title}</span>}
@@ -150,7 +169,7 @@ export function BookingForm({ services, barbers }: { services: Service[]; barber
                 type="button"
                 key={d.iso}
                 className={`day ${date === d.iso ? 'selected' : ''}`}
-                onClick={() => setDate(d.iso)}
+                onClick={() => pickDate(d.iso)}
               >
                 <span className="day-week">{WEEKDAY_SHORT[Number(d.weekday)]}</span>
                 <span>{d.label}</span>

@@ -22,7 +22,10 @@ export const Appointments: CollectionConfig = {
           req.payload.findByID({ collection: 'services', id: serviceId }),
         ])
 
-        const weekday = String(new Date(`${date}T00:00:00`).getDay())
+        // getDay() всегда возвращает 0–6, каст к литеральному типу безопасен
+        const weekday = String(
+          new Date(`${date}T00:00:00`).getDay(),
+        ) as NonNullable<import('../payload-types').Barber['workDays']>[number]
         if (!barber.active || !(barber.workDays || []).includes(weekday)) {
           return Response.json({ slots: [], reason: 'day_off' })
         }
