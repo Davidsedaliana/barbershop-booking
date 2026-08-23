@@ -37,12 +37,26 @@ npm run seed            # demo data: services, barbers, admin
 Admin: http://localhost:3000/admin — demo login `admin@britva.demo` / `britva-demo`
 (created by the seed; change it for anything public).
 
+## Telegram bot
+
+The same booking flow is also available as a **Telegram bot** (`bot/`, aiogram 3) —
+it talks to the very same Payload API the website uses: same slot logic, same
+double-booking guard, bookings land in the same admin panel. If a slot gets taken
+mid-dialog, the bot offers fresh times instead of failing.
+
+```
+cd bot
+pip install -r requirements.txt
+cp .env.example .env        # BOT_TOKEN от @BotFather
+python -m britva_bot.main   # long polling; сайт должен быть запущен
+```
+
 ## How it works
 
 ```
-Next.js (App Router)
-├── (frontend)  landing + booking wizard (React, Server Components)
-├── (payload)   Payload admin & REST API
+Next.js (App Router)                     bot/ (aiogram 3)
+├── (frontend)  landing + booking wizard   └── same API, FSM dialog
+├── (payload)   Payload admin & REST API ◄──────┘
 └── collections
     ├── Services      price, duration (= slot grid step)
     ├── Barbers       per-weekday shifts

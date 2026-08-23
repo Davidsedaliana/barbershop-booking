@@ -37,12 +37,26 @@ npm run seed            # демо-данные: услуги, барберы, �
 Админка: http://localhost:3000/admin — демо-вход `admin@britva.demo` /
 `britva-demo` (создаётся сидом; для чего-то публичного — поменяй).
 
+## Telegram-бот
+
+Тот же флоу записи доступен и как **Telegram-бот** (`bot/`, aiogram 3) — он ходит
+в тот же Payload API, что и сайт: та же логика слотов, та же защита от двойной
+брони, записи падают в ту же админку. Если слот заняли посреди диалога — бот
+предложит свежие времена, а не упадёт.
+
+```
+cd bot
+pip install -r requirements.txt
+cp .env.example .env        # BOT_TOKEN от @BotFather
+python -m britva_bot.main   # long polling; сайт должен быть запущен
+```
+
 ## Как устроено
 
 ```
-Next.js (App Router)
-├── (frontend)  лендинг + мастер записи (React, Server Components)
-├── (payload)   админка и REST API Payload
+Next.js (App Router)                     bot/ (aiogram 3)
+├── (frontend)  лендинг + мастер записи    └── тот же API, FSM-диалог
+├── (payload)   админка и REST API ◄──────────────┘
 └── collections
     ├── Services      цена, длительность (= шаг сетки слотов)
     ├── Barbers       смены по дням недели

@@ -43,6 +43,11 @@ next-env.d.ts
 # локальная SQLite-база (создаётся на dev-пуше, наполняется сидом)
 *.db
 
+# Python (бот)
+__pycache__/
+.pytest_cache/
+.ruff_cache/
+
 /media
 
 # Playwright
